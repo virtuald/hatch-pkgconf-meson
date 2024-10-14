@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hatch-mkpkgconf"
+dynamic = ["version"]
+description = "Hatch plugin to create pkgconf file and support tools"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "BSD-3-Clause"
+authors = [
+    {name = "Dustin Spicuzza", email = "dustin@virtualroadside.com"},
+]
+keywords = [
+    "hatch",
+    "pkgconf",
+]
+classifiers = [
+    "Framework :: Hatch",
+]
+dependencies = [
+    "hatchling",
+    "pkgconf",
+    "validobj",
+    "delocate; platform_system == 'Darwin'",
+]
+
+[project.urls]
+"Source code" = "https://github.com/virtuald/hatch-mkpkgconf"
+
+[project.entry-points.hatch]
+mkpkgconf = "hatch_mkpkgconf.hooks"
+
+[tool.hatch.version]
+source = "vcs"
+raw-options.root = ".."
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/hatch_mkpkgconf/_version.py"

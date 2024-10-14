@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hatch-robotpy"
+dynamic = ["version"]
+description = "Hatch plugins for use with RobotPy projects"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "BSD-3-Clause"
+authors = [
+    {name = "Dustin Spicuzza", email = "dustin@virtualroadside.com"},
+]
+keywords = [
+    "hatch",
+    "robotpy",
+]
+classifiers = [
+    "Framework :: Hatch",
+]
+dependencies = [
+    "hatchling",
+    "validobj",
+    "distro; platform_system == 'Linux'",
+]
+
+[project.urls]
+"Source code" = "https://github.com/robotpy/hatch-robotpy"
+
+[project.entry-points.hatch]
+robotpy = "hatch_robotpy.hooks"
+
+[tool.hatch.version]
+source = "vcs"
+raw-options.root = ".."
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/hatch_robotpy/_version.py"

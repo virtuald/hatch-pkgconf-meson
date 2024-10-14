@@ -1,0 +1,8 @@
+prefix=${pcfiledir}
+includedir=${prefix}/include
+
+Name: robotpy-pybind11
+Description: RobotPy fork of pybind11
+Version: 2.12.0.dev1
+Cflags: -I${includedir} -DPYBIND11_USE_SMART_HOLDER_AS_DEFAULT
+Libs:

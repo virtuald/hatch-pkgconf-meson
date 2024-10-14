@@ -1,0 +1,25 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = ['hatchling']
+
+[project]
+name = 'robotpy-pybind11'
+version = '2.12.0.dev1'
+
+[project.entry-points.pkg_config]
+ep = "robotpy_pybind11"
+
+[tool.hatch.build.targets.sdist]
+ignore-vcs = true
+# include = [
+#     "native/wpiutil/include/*",
+#     "native/wpiutil/lib/*",
+# ]
+
+[tool.hatch.build.targets.wheel]
+packages = ['robotpy_pybind11']
+# artifacts = ["*.so"]
+# include = [
+#     "native/wpiutil/include/*",
+#     "native/wpiutil/lib/*",
+# ]

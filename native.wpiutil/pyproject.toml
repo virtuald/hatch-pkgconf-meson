@@ -1,0 +1,38 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = ['hatchling', 'hatch-mkpkgconf', 'hatch-robotpy']
+
+[project]
+name = 'native.wpiutil'
+version = '2025.0.0.a2'
+
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/native']
+
+
+[[tool.hatch.build.hooks.robotpy.maven_lib_download]]
+artifact_id = "wpiutil-cpp"
+group_id = "edu.wpi.first.wpiutil"
+repo_url = "https://frcmaven.wpi.edu/artifactory/development"
+# repo_url = "https://frcmaven.wpi.edu/artifactory/development"
+version = "2025.0.0-alpha-2"
+
+extract_to = "src/native/wpiutil"
+libs = ["wpiutil"]
+
+# Or use this syntax instead?
+# includedir = "src/native/wpiutil/include"
+# libdir = "src/native/wpiutil/lib"
+# shared_libraries = ["wpiutil"]
+
+
+# or [tool.hatch.build.hooks.mkpkgconf.pcfile.wpiutil] ?
+[[tool.hatch.build.hooks.mkpkgconf.pcfile]]
+outpath = "src/native/wpiutil"
+name = "wpiutil"
+description = "WPI Utility Library"
+
+includedir = "src/native/wpiutil/include"
+libdir = "src/native/wpiutil/lib"
+shared_libraries = ["wpiutil"]

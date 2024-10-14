@@ -1,0 +1,38 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = [
+    'hatchling',
+    'native.wpiutil==2025.0.0.a2',
+]
+
+[project]
+name = 'native.wpinet'
+version = '2025.0.0.a2'
+dependencies = [
+    'native.wpiutil==2025.0.0.a2',
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/native']
+
+
+[[tool.hatch.build.hooks.robotpy.maven_lib_download]]
+artifact_id = "wpinet-cpp"
+group_id = "edu.wpi.first.wpinet"
+# repo_url = "https://frcmaven.wpi.edu/artifactory/release"
+repo_url = "https://frcmaven.wpi.edu/artifactory/development"
+version = "2025.0.0-alpha-2-21-g466a4a5"
+
+extract_to = "src/native/wpinet"
+libs = ["wpinet"]
+
+
+[[tool.hatch.build.hooks.mkpkgconf.pcfile]]
+outpath = "src/native/wpinet"
+name = "wpinet"
+description = "WPILib Networking Library"
+
+includedir = "src/native/wpinet/include"
+libdir = "src/native/wpinet/lib"
+shared_libraries = ["wpinet"]
+requires = ["wpiutil"]
